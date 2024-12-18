@@ -1,2 +1,2 @@
 # LiarsDice
-The infamouse gambling game Liar's Dice written in Java
+The famous gambling game Liar's Dice written in Java
