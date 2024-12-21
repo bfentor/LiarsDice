@@ -7,16 +7,19 @@ public class Player {
     String name;
     Player(String name) {
         dice = 5;
-        throwDice(dice);
+        throwDice();
         this.name = name;
     }
-    public void throwDice(int dice) {
+    public void throwDice() {
         Random rand = new Random();
         int[] arr = new int[dice];
         for (int i = 0; i < dice; i++) {
             arr[i] = rand.nextInt(1, 7);
         }
         faces = arr;
+    }
+    public void drawDice() {
+        Dice.drawDice(faces);
     }
     //Getters and setters
     public String getName() {
@@ -27,9 +30,9 @@ public class Player {
     }
     public void loseDie() {
         dice--;
-        throwDice(dice);
+        throwDice();
     }
-    public int[] choice() {
+    public int[] choice(int[] bid) {
         System.out.println("================");
         System.out.println("1. Raise bid");
         System.out.println("2. Call bluff");
@@ -43,10 +46,19 @@ public class Player {
         
         switch (choice) {
             case 1:
-                int[] bid = bid();
-                ret[0] = 1;
-                ret[1] = bid[0];
-                ret[2] = bid[1];
+                int[] temp;
+                while (true) {
+                    System.out.println("Above");
+                    temp = bid();
+                    System.out.println("Below");
+                    if (temp[0] > bid[0] || temp[0] == bid[0] && temp[1] != bid[1]) {
+                        ret[0] = 1;
+                        ret[1] = temp[0];
+                        ret[2] = temp[1];
+                        break;
+                    }
+                    System.out.println("Bid must be higher than the previous");
+                }
                 break;
             case 2:
                 ret[0] = 2;
