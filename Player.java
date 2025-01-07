@@ -1,5 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
     int dice;
@@ -32,11 +34,12 @@ public class Player {
         dice--;
         throwDice();
     }
-    public int[] choice(int[] bid) {
+    public int[] choice(int[] bid, int total) {
         System.out.println("================");
         System.out.println("1. Raise bid");
         System.out.println("2. Call bluff");
         System.out.println("3. Call right on");
+        System.out.println("0. Quit");
         System.out.print("Selection: ");
         Scanner sc = new Scanner(System.in);
         int choice = sc.nextInt();
@@ -48,9 +51,7 @@ public class Player {
             case 1:
                 int[] temp;
                 while (true) {
-                    System.out.println("Above");
-                    temp = bid();
-                    System.out.println("Below");
+                    temp = bid(new int[2], 0);    //The array passed in is only used in the Computer class
                     if (temp[0] > bid[0] || temp[0] == bid[0] && temp[1] != bid[1]) {
                         ret[0] = 1;
                         ret[1] = temp[0];
@@ -66,6 +67,8 @@ public class Player {
             case 3:
                 ret[0] = 3;
                 break;
+            case 0:
+                System.exit(1);
             default:
                 System.out.println("Option not found");
                 ret[0] = 0;
@@ -73,7 +76,7 @@ public class Player {
         }
         return ret;
     }
-    public int[] bid() {
+    public int[] bid(int[] bid, int total) {
         System.out.print("Enter bid: ");
         Scanner sc = new Scanner(System.in);
         int num = sc.nextInt();
@@ -81,4 +84,5 @@ public class Player {
         int[] arr = {num, face};
         return arr;
     }
+    
 }

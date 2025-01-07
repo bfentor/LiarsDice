@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=mode
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=inputArray
+comment2.target=int[]\ findTotals(int[])
+comment3.params=
+comment3.target=void\ drawDice()
+comment4.params=
+comment4.target=void\ test()
+comment5.params=l
+comment5.target=java.util.List\ getUnique(java.util.List)
+numComments=6

@@ -23,16 +23,23 @@ public class Game {
         
         //Game loop
         while (true) {
+            int tot = 0;
+            for (Player obj4 : players) tot += obj4.dice;
+            System.out.println();
+            for (Player obj2 : players) {
+                System.out.println(obj2.getName() + " has " + obj2.dice + " dice");
+            }
+            System.out.println();
             for (int i = 0; i < players.size(); i++) {
                 if (bid[0] == 0) {
                     System.out.println("Initial Bid");
                     players.get(i).drawDice();
-                    bid = players.get(i).bid();
+                    bid = players.get(i).bid(bid, tot);
                     System.out.printf("\n%s bid %d %d\n", players.get(i).getName(), bid[0], bid[1]);
                     continue;
                 }
                 players.get(i).drawDice();
-                int[] ret = players.get(i).choice(bid);
+                int[] ret = players.get(i).choice(bid, tot);
                 switch (ret[0]) {
                     case 0:
                         i--;
